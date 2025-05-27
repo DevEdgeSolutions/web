@@ -5,8 +5,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:css": "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css",
+    "build:css-prod": "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --minify",
+    "cache-bust": "node scripts/cache-bust.js",
     "copy": "npx cpx \"src/**/!(*input.css)\" dist",
-    "build": "npm run build:css && npm run copy",
+    "build": "npm run build:css-prod && npm run cache-bust && npm run copy",
     "deploy": "npm run build && npx gh-pages -d dist"
   },
   "keywords": [],
